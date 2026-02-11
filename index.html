@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lightweight JSON file viewer and validator">
+    <meta name="theme-color" content="#0d1117">
+    <title>JSON Viewer</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>🔧 JSON Viewer</h1>
+                <div id="fileInfo" class="file-info" style="display: none;">
+                    <span id="fileName"></span>
+                    <span id="fileSize"></span>
+                    <span id="validation" class="validation"></span>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="openFile" class="btn">Open File</button>
+                <button id="toggleView" class="btn" style="display: none;">Tree View</button>
+                <button id="collapseAll" class="btn" style="display: none;">Collapse All</button>
+                <button id="expandAll" class="btn" style="display: none;">Expand All</button>
+                <button id="toggleTheme" class="btn">🌓</button>
+            </div>
+        </header>
+
+        <div id="dropZone" class="drop-zone">
+            <div class="drop-zone-content">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <circle cx="10" cy="13" r="2"></circle>
+                    <path d="M14 13h2"></path>
+                </svg>
+                <p>Drop a JSON file here or click "Open File"</p>
+                <p class="hint">Or paste JSON directly into the viewer</p>
+            </div>
+        </div>
+
+        <div id="viewerContainer" style="display: none;">
+            <div class="toolbar">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search keys and values..." />
+                    <button id="clearSearch" class="btn-icon">✕</button>
+                </div>
+                <div class="stats" id="statsContainer"></div>
+            </div>
+
+            <div id="treeView" class="tree-view"></div>
+            <div id="rawView" class="raw-view" style="display: none;">
+                <pre><code id="rawContent"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <div id="copyToast" class="toast">Path copied to clipboard!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
