@@ -14,12 +14,17 @@ A lightweight, fast JSON file viewer with collapsible tree view, validation, and
 - 🔄 **Tree/Raw toggle** - Switch between structured and raw views
 - ⚡ **Expand/Collapse all** - One-click tree navigation
 - 🎨 **Syntax highlighting** - Color-coded types (string, number, boolean, null)
-- 🌓 **Dark/Light mode** - Toggle between themes
+- ⌨️ **Keyboard navigation** - Arrow keys, Enter/Space to navigate and expand tree nodes
+- 🌓 **Dark/Light mode** - Toggle between themes (remembered across sessions)
 - 📱 **Responsive** - Works great on desktop and mobile
 
 ## Quick Start
 
-### 1. Serve the files
+### Option A: Use the hosted version
+
+Visit the [GitHub Pages deployment](https://spskelly.github.io/json-viewer/) — no install needed.
+
+### Option B: Self-host
 
 ```bash
 cd json-viewer
@@ -27,13 +32,13 @@ python3 -m http.server 8000
 ```
 Then visit: http://localhost:8000
 
-### 2. Install as PWA
+### Install as PWA
 
 1. Open the app in Chrome/Edge/Brave
 2. Look for the install icon in the address bar
 3. Click to install
 
-### 3. Set as default file handler
+### Set as default file handler
 
 After installing:
 1. Right-click any `.json` file
@@ -91,10 +96,15 @@ Shows at-a-glance:
 
 ## Keyboard Shortcuts
 
-- `Ctrl/Cmd + O` - Open file
-- `Ctrl/Cmd + F` - Focus search
-- `Ctrl/Cmd + D` - Toggle dark/light mode
-- `Esc` - Close modals
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl/Cmd + O` | Open file |
+| `Ctrl/Cmd + F` | Focus search |
+| `Ctrl/Cmd + D` | Toggle dark/light mode |
+| `↑` / `↓` | Navigate between tree nodes |
+| `←` | Collapse node or move to parent |
+| `→` | Expand node or move to first child |
+| `Enter` / `Space` | Toggle expand/collapse |
 
 ## Use Cases
 
@@ -107,11 +117,10 @@ Perfect for:
 
 ## Performance
 
-Handles large JSON files well:
-- Efficient tree rendering
-- On-demand expansion
-- Fast search
-- Tested with deeply nested structures
+- Efficient tree rendering with event delegation
+- On-demand expansion (collapsed nodes skip rendering)
+- Debounced search (250ms) prevents lag on large trees
+- 50MB file size limit to prevent browser freezes
 
 ## Browser Support
 
