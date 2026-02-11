@@ -1,4 +1,4 @@
-const CACHE_NAME = 'json-viewer-v1';
+const CACHE_NAME = 'json-viewer-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -24,16 +24,15 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
+        cacheNames
+          .filter(name => name !== CACHE_NAME)
+          .map(name => {
+            console.log('deleting old cache:', name);
+            return caches.delete(name);
+          })
       );
-    })
+    }).then(() => self.clients.claim())
   );
-  return self.clients.claim();
 });
 
 // fetch event - serve from cache, fallback to network

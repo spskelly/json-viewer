@@ -10,28 +10,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <header>
             <div class="header-left">
                 <h1>🔧 JSON Viewer</h1>
                 <div id="fileInfo" class="file-info" style="display: none;">
                     <span id="fileName"></span>
                     <span id="fileSize"></span>
-                    <span id="validation" class="validation"></span>
+                    <span id="validation" class="validation" aria-live="polite"></span>
                 </div>
             </div>
             <div class="controls">
-                <button id="openFile" class="btn">Open File</button>
-                <button id="toggleView" class="btn" style="display: none;">Tree View</button>
+                <button id="openFile" class="btn" aria-label="Open JSON file">Open File</button>
+                <button id="toggleView" class="btn" style="display: none;">Raw View</button>
                 <button id="collapseAll" class="btn" style="display: none;">Collapse All</button>
                 <button id="expandAll" class="btn" style="display: none;">Expand All</button>
-                <button id="toggleTheme" class="btn">🌓</button>
+                <button id="toggleTheme" class="btn" aria-label="Toggle dark/light theme">🌓</button>
             </div>
         </header>
 
-        <div id="dropZone" class="drop-zone">
+        <div id="dropZone" class="drop-zone" role="region" aria-label="File drop zone">
             <div class="drop-zone-content">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <circle cx="10" cy="13" r="2"></circle>
@@ -44,23 +44,23 @@
 
         <div id="viewerContainer" style="display: none;">
             <div class="toolbar">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Search keys and values..." />
-                    <button id="clearSearch" class="btn-icon">✕</button>
+                <div class="search-box" role="search">
+                    <input type="text" id="searchInput" placeholder="Search keys and values..." aria-label="Search keys and values" />
+                    <button id="clearSearch" class="btn-icon" aria-label="Clear search">✕</button>
                 </div>
-                <div class="stats" id="statsContainer"></div>
+                <div class="stats" id="statsContainer" aria-live="polite"></div>
             </div>
 
-            <div id="treeView" class="tree-view"></div>
+            <div id="treeView" class="tree-view" role="tree" aria-label="JSON tree"></div>
             <div id="rawView" class="raw-view" style="display: none;">
                 <pre><code id="rawContent"></code></pre>
             </div>
         </div>
-    </div>
+    </main>
 
-    <input type="file" id="fileInput" accept=".json" style="display: none;">
+    <input type="file" id="fileInput" accept=".json" style="display: none;" aria-label="Select JSON file">
 
-    <div id="copyToast" class="toast">Path copied to clipboard!</div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="app.js"></script>
 </body>

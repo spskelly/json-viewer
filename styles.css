@@ -200,8 +200,14 @@ header h1 {
 }
 
 .search-box input:focus {
-  outline: none;
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
   border-color: var(--accent);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .stats {
@@ -244,6 +250,11 @@ header h1 {
 
 .tree-header:hover {
   background: var(--bg-tertiary);
+}
+
+.tree-header:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .tree-header.highlight {
@@ -365,6 +376,10 @@ header h1 {
   transform: translateY(0);
 }
 
+.toast-error {
+  background: var(--null);
+}
+
 /* responsive */
 @media (max-width: 768px) {
   .container {
@@ -407,6 +422,11 @@ header h1 {
 }
 
 /* scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
